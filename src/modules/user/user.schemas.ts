@@ -38,3 +38,7 @@ export const authUserSchema = z.object({
   email: z.string().email("Invalid Email").trim(),
   password: z.string(),
 });
+
+export const detailUserSchema = z.object({
+  username: z.string().nonempty("Username cannot be empty"),
+});

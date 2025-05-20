@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { validationMiddleware } from "../../middlewares/validation.middleware";
-import { authUserSchema, createUserSchema } from "./user.schemas";
+import {
+  authUserSchema,
+  createUserSchema,
+  detailUserSchema,
+  userSchema,
+} from "./user.schemas";
 import { UserController } from "./user.controller";
 import { authMiddleware } from "../../middlewares/auth.middleware";
 
@@ -17,3 +22,5 @@ userRouter.post(
   validationMiddleware(authUserSchema),
   UserController.authUser
 );
+
+userRouter.get("/:username", UserController.detailUser);

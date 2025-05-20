@@ -1,5 +1,5 @@
 import { UserRepository } from "./user.repository";
-import { AuthUserTypes, CreateUserTypes } from "./user.types";
+import { AuthUserTypes, CreateUserTypes, DetailUserTypes } from "./user.types";
 import { hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
@@ -32,6 +32,18 @@ export class UserService {
       email,
       password: hashedPassword,
     });
+  }
+
+  static async detailUser(username: string) {
+    const user = await UserRepository.detailUser(username);
+
+    if (!user) {
+      const error: any = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    return user
   }
 
   static async authUser({ email, password }: AuthUserTypes) {
