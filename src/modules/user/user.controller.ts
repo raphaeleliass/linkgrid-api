@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
-import {
-  CreateUserTypes,
-  DeleteUserTypes,
-  UpdateUserTypes,
-} from "./user.types";
+import { AuthUserTypes, CreateUserTypes } from "./user.types";
 import { UserService } from "./user.service";
 
 export class UserController {
@@ -15,26 +11,10 @@ export class UserController {
     res.json(newUser);
   }
 
-  static async updateUser(req: Request, res: Response) {
-    const updateUserInput: UpdateUserTypes = req.body;
-
-    const updatedUser = await UserService.updateUser(updateUserInput);
-
-    res.json(updatedUser);
-  }
-
-  static async deleteUser(req: Request, res: Response) {
-    const deleteUserInput: DeleteUserTypes = req.body;
-
-    const deletedUser = await UserService.deleteUser(deleteUserInput);
-
-    res.json(deletedUser);
-  }
-
   static async authUser(req: Request, res: Response) {
-    const { email, password } = req.body;
+    const { email, password }:AuthUserTypes = req.body;
 
-    const authUser = await UserService.authUser(email, password);
+    const authUser = await UserService.authUser({ email, password });
 
     res.json(authUser);
   }

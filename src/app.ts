@@ -22,6 +22,6 @@ app.use(
 
 app.use(express.json());
 
-app.use(errorMiddleware);
-
 app.use("/api/users", userRouter);
+
+app.use(errorMiddleware);
