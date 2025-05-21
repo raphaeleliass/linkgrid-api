@@ -10,6 +10,8 @@ export const validationMiddleware =
       res
         .status(400)
         .json({ error: "Input validation failed", issue: result.error.errors });
+
+      return;
     }
 
     next();

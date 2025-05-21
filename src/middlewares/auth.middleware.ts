@@ -19,9 +19,11 @@ export const authMiddleware = (
 
   const [, token] = authToken.split(" ");
 
-  const { sub } = verify(token, process.env.JWT_SECRET!) as Payload;
-
-  req.userId = sub;
-
-  next();
+  try {
+    const { sub } = verify(token, process.env.JWT_SECRET!) as Payload;
+    req.userId = sub;
+    next();
+  } catch (err) {
+    res.status(401).json({ error: "Invalid token" });
+  }
 };
