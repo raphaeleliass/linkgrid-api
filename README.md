@@ -3,7 +3,7 @@
 # LinkGrid API
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Stars](https://img.shields.io/github/stars/seu-usuario/seu-repositorio?style=social)](https://github.com/raphaeleliass/linkgrid-api/stargazers)
+[![Stars](https://img.shields.io/github/stars/raphaeleliass/linkgrid-api?style=social)](https://github.com/raphaeleliass/linkgrid-api/stargazers)
 
 <em style="display: block; margin: 1rem auto; max-width: 600px; color: #666">
 API para gerenciamento de perfis de usuário e links personalizados, permitindo criar, editar e remover links associados a cada usuário. Ideal para aplicações de bio-link, portfólios e redes sociais.
