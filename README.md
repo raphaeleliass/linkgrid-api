@@ -98,6 +98,6 @@ DELETE /api/links/delete
 
 <p style="font-size: 1.6rem; margin-top: 4rem">👥 Autores</p>
 
-👤 Raphael
+👤 [Raphael Elias](https://raphaelelias.tech/links)
 
 
