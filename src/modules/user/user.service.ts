@@ -43,7 +43,7 @@ export class UserService {
       throw error;
     }
 
-    return user
+    return user;
   }
 
   static async authUser({ email, password }: AuthUserTypes) {
@@ -62,10 +62,14 @@ export class UserService {
       throw error;
     }
 
-    const token = sign({ email: user.email }, process.env.JWT_SECRET!, {
-      subject: user.id,
-      expiresIn: "30d",
-    });
+    const token = sign(
+      { username: user.username, email: user.email },
+      process.env.JWT_SECRET!,
+      {
+        subject: user.id,
+        expiresIn: "30d",
+      }
+    );
 
     return { id: user.id, username: user.username, email: user.email, token };
   }
