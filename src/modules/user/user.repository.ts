@@ -34,7 +34,15 @@ export class UserRepository {
         name: true,
         username: true,
         email: true,
-        links: true,
+        links: {
+          select: {
+            id: true,
+            title: true,
+            href: true,
+            created_at: true,
+            updated_at: true,
+          },
+        },
       },
     });
   }
