@@ -46,6 +46,18 @@ export class UserService {
     return user;
   }
 
+  static async detailLoggedUser(id: string) {
+    const user = await UserRepository.detailLoggedUser(id);
+
+    if (!user) {
+      const error: any = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    return user;
+  }
+
   static async authUser({ email, password }: AuthUserTypes) {
     const user = await UserRepository.checkUserEmail(email);
 

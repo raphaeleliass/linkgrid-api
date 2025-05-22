@@ -25,4 +25,17 @@ export class UserRepository {
       select: { name: true, username: true, links: { omit: { userId: true } } },
     });
   }
+
+  static async detailLoggedUser(id: string) {
+    return await prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        email: true,
+        links: true,
+      },
+    });
+  }
 }

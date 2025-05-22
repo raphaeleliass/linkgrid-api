@@ -10,6 +10,13 @@ export class UserController {
 
     res.json(newUser);
   }
+  static async detailLoggedUser(req: Request, res: Response) {
+    const userId = req.userId;
+
+    const user = await UserService.detailLoggedUser(userId);
+
+    res.json(user);
+  }
 
   static async authUser(req: Request, res: Response) {
     const { email, password }: AuthUserTypes = req.body;

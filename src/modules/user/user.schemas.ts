@@ -21,6 +21,7 @@ export const createUserSchema = z.object({
   username: z
     .string()
     .min(2, "User must contain at least 2 characters")
+    .regex(/^[a-zA-Z0-9._]+$/, "Invalid username")
     .refine((val) => !val.includes(" "), "Username cannot contain spaces"),
   email: z.string().email("Invalid email").trim(),
   password: z
@@ -30,6 +31,7 @@ export const createUserSchema = z.object({
   name: z
     .string()
     .min(2, "Name must contain 2 at least 2 characters")
+    .regex(/^[a-zA-Z0-9._]+$/, "Invalid name")
     .trim()
     .optional(),
 });
