@@ -30,7 +30,6 @@ export class UserRepository {
     return await prisma.user.findUnique({
       where: { id },
       select: {
-        id: true,
         name: true,
         username: true,
         email: true,
