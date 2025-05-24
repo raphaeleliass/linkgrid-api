@@ -10,7 +10,7 @@ export class LinkService {
     await LinkRepository.updateLink(data);
   }
 
-  static async deleteLinkSchema(data: DeleteLinkType) {
-    const deletedRequest = await LinkRepository.deleteLink(data);
+  static async deleteLink(data: DeleteLinkType) {
+    return await LinkRepository.deleteLink(data);
   }
 }

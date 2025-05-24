@@ -24,9 +24,4 @@ linkRouter.put(
   LinkController.updateLink
 );
 
-linkRouter.delete(
-  "/delete",
-  authMiddleware,
-  validationMiddleware(deleteLinkSchema),
-  LinkController.deleteLink
-);
+linkRouter.delete("/delete", authMiddleware, LinkController.deleteLink);

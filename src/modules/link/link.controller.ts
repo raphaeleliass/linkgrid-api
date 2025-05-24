@@ -21,10 +21,20 @@ export class LinkController {
   }
 
   static async deleteLink(req: Request, res: Response) {
-    const deletePayload: DeleteLinkType = req.body;
+    const { id } = req.query;
 
-    const deletedLink = await LinkRepository.deleteLink(deletePayload);
+    if (typeof id !== "string" || !id) {
+      res.status(400).json({ message: "ID do link é inválido ou ausente." });
+      return;
+    }
 
-    res.json(deletedLink);
+    try {
+      const deletedLink = await LinkService.deleteLink({ id });
+      res.json(deletedLink);
+    } catch (error: any) {
+      res
+        .status(error.statusCode || 500)
+        .json({ message: error.message || "Erro ao deletar link." });
+    }
   }
 }
