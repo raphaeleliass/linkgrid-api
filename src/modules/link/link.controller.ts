@@ -5,9 +5,10 @@ import { LinkRepository } from "./link.repository";
 
 export class LinkController {
   static async createLink(req: Request, res: Response) {
-    const createPayload: CreateLinkType = req.body;
+    const userId = req.userId;
+    const createPayload = req.body;
 
-    const createdLink = await LinkService.createLink(createPayload);
+    const createdLink = await LinkService.createLink(createPayload, userId);
 
     res.json(createdLink);
   }
@@ -21,20 +22,10 @@ export class LinkController {
   }
 
   static async deleteLink(req: Request, res: Response) {
-    const { id } = req.query;
+    const id = req.query;
 
-    if (typeof id !== "string" || !id) {
-      res.status(400).json({ message: "ID do link é inválido ou ausente." });
-      return;
-    }
+    const deletedLink = await LinkService.deleteLink(id);
 
-    try {
-      const deletedLink = await LinkService.deleteLink({ id });
-      res.json(deletedLink);
-    } catch (error: any) {
-      res
-        .status(error.statusCode || 500)
-        .json({ message: error.message || "Erro ao deletar link." });
-    }
+    res.json(deletedLink);
   }
 }
