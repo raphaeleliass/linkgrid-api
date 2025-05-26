@@ -6,7 +6,6 @@ import { linkRouter } from "./modules/link/link.routes";
 import { userRouter } from "./modules/user/user.routes";
 import { errorMiddleware } from "./middlewares/error.middleware";
 
-// TODO implementar rate limit antes do deploy
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   limit: 50,
@@ -17,17 +16,16 @@ export const app = express();
 
 app.use(helmet());
 
-// TODO configurar o origin antes do deploy
 app.use(
   cors({
-    // origin: "",
+    origin: ["https://linkgrid.site"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
 app.use(express.json());
-// app.use(limiter); TODO descomentar para deploy
+app.use(limiter);
 
 app.use("/api/users", userRouter);
 app.use("/api/links", linkRouter);
