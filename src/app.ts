@@ -19,8 +19,9 @@ app.use(helmet());
 app.use(
   cors({
     origin: ["https://linkgrid.site"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
