@@ -5,9 +5,10 @@ import { LinkRepository } from "./link.repository";
 
 export class LinkController {
   static async createLink(req: Request, res: Response) {
-    const createPayload: CreateLinkType = req.body;
+    const userId = req.userId;
+    const createPayload = req.body;
 
-    const createdLink = await LinkService.createLink(createPayload);
+    const createdLink = await LinkService.createLink(createPayload, userId);
 
     res.json(createdLink);
   }
@@ -21,9 +22,9 @@ export class LinkController {
   }
 
   static async deleteLink(req: Request, res: Response) {
-    const deletePayload: DeleteLinkType = req.body;
+    const id = req.query;
 
-    const deletedLink = await LinkRepository.deleteLink(deletePayload);
+    const deletedLink = await LinkService.deleteLink(id);
 
     res.json(deletedLink);
   }
