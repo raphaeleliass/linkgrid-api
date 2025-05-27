@@ -34,16 +34,11 @@ app.use(
       "X-Requested-With",
     ],
     exposedHeaders: ["Content-Length", "X-Requested-With"],
-    preflightContinue: true,
-    optionsSuccessStatus: 204,
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
     maxAge: 86400,
   })
 );
-
-// Enable pre-flight requests for all routes
-app.options("*", (req, res) => {
-  res.status(204).send();
-});
 
 app.use(express.json());
 app.use(limiter);
