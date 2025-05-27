@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import { linkRouter } from "./modules/link/link.routes";
@@ -14,8 +14,20 @@ const limiter = rateLimit({
 
 export const app = express();
 
-app.use(helmet());
+app.use(
+  cors({
+    origin: [
+      "https://linkgrid.site",
+      "https://www.linkgrid.site",
+      "https://linkgrid.vercel.app",  
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
+app.use(helmet());
 app.use(express.json());
 app.use(limiter);
 
