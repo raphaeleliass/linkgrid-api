@@ -20,6 +20,7 @@ app.use(
       "https://linkgrid.site",
       "https://www.linkgrid.site",
       "https://linkgrid.vercel.app",
+      "https://linkgrid-api.vercel.app",
       ...(process.env.NODE_ENV === "development" ? ["http://localhost:3000"] : []),
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
