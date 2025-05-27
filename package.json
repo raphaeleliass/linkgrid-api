@@ -18,6 +18,7 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.18",
+    "prisma": "^6.8.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
@@ -31,7 +32,6 @@
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^6.8.2",
     "zod": "^3.24.4"
   }
 }
