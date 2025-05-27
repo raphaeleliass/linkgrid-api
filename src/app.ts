@@ -19,15 +19,34 @@ app.use(
     origin: [
       "https://linkgrid.site",
       "https://www.linkgrid.site",
-      "https://linkgrid.vercel.app",  
+      "https://linkgrid.vercel.app",
+      ...(process.env.NODE_ENV === "development" ? ["http://localhost:3000"] : []),
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+    ],
+    exposedHeaders: ["Content-Range", "X-Content-Range"],
     credentials: true,
+    maxAge: 86400, // 24 hours in seconds
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 
-app.use(helmet());
+// Enable pre-flight requests for all routes
+app.options("*", cors());
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    crossOriginOpenerPolicy: { policy: "same-origin" },
+  })
+);
 app.use(express.json());
 app.use(limiter);
 
