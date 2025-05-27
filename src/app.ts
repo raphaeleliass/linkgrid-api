@@ -26,12 +26,19 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization", "Origin", "Accept"],
+    allowedHeaders: ["Content-Type", "Authorization", "Origin", "Accept", "X-Requested-With"],
     exposedHeaders: ["Content-Length", "X-Requested-With"],
+    preflightContinue: true,
+    optionsSuccessStatus: 204,
     maxAge: 86400,
   })
 );
-app.options("*", cors());
+
+// Enable pre-flight requests for all routes
+app.options("*", (req, res) => {
+  res.status(204).send();
+});
+
 app.use(express.json());
 app.use(limiter);
 
