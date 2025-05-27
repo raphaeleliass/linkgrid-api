@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import { linkRouter } from "./modules/link/link.routes";
@@ -15,8 +15,6 @@ const limiter = rateLimit({
 export const app = express();
 
 app.use(helmet());
-
-app.use(cors());
 
 app.use(express.json());
 app.use(limiter);
