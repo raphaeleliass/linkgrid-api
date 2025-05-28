@@ -14,7 +14,31 @@ const limiter = rateLimit({
 
 export const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://linkgrid.site",
+      "https://www.linkgrid.site",
+      "https://linkgrid.vercel.app",
+      ...(process.env.NODE_ENV === "development"
+        ? ["http://localhost:3000"]
+        : []),
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+    ],
+    exposedHeaders: ["Content-Range", "X-Content-Range"],
+    credentials: true,
+    maxAge: 86400,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 
 app.use(
   helmet({
