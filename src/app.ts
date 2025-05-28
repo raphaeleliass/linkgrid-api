@@ -14,24 +14,7 @@ const limiter = rateLimit({
 
 export const app = express();
 
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "X-Requested-With",
-      "Accept",
-      "Origin",
-    ],
-    exposedHeaders: ["Content-Range", "X-Content-Range"],
-    credentials: true,
-    maxAge: 86400, // 24 hours in seconds
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
-);
+app.use(cors());
 
 app.use(
   helmet({
