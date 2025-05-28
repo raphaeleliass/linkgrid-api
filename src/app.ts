@@ -41,8 +41,6 @@ app.use(
   })
 );
 
-app.options("*", cors());
-
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -54,5 +52,8 @@ app.use(limiter);
 
 app.use("/api/users", userRouter);
 app.use("/api/links", linkRouter);
+app.get("/api/hello", (req, res) => {
+  res.json({ ok: true });
+});
 
 app.use(errorMiddleware);
