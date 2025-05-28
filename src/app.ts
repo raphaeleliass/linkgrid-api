@@ -14,7 +14,9 @@ const limiter = rateLimit({
 
 export const app = express();
 
-app.use(cors());
+import { corsMiddleware } from "./middlewares/cors.middleware";
+
+app.use(corsMiddleware);
 
 app.use(
   helmet({
